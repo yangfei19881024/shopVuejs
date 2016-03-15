@@ -19,3 +19,9 @@ npm test
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+##注意项
+```
+使用 <style lang='sass'></style>
+需要安装 sass-loader node-sass
+```

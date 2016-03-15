@@ -15,22 +15,27 @@ module.exports = {
       'src': path.resolve(__dirname, '../src')
     }
   },
+  externals: {
+      // require("jquery") is external and available
+      //  on the global var jQuery
+      'zepto': 'Zepto'
+  },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules')
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.vue$/,
-        loader: 'eslint',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.js$/,
-        loader: 'eslint',
-        exclude: /node_modules/
-      }
-    ],
+    // preLoaders: [
+    //   {
+    //     test: /\.vue$/,
+    //     loader: 'eslint',
+    //     exclude: /node_modules/
+    //   },
+    //   {
+    //     test: /\.js$/,
+    //     loader: 'eslint',
+    //     exclude: /node_modules/
+    //   }
+    // ],
     loaders: [
       {
         test: /\.vue$/,
@@ -56,6 +61,6 @@ module.exports = {
     ]
   },
   eslint: {
-    formatter: require('eslint-friendly-formatter')
+    //formatter: require('eslint-friendly-formatter')
   }
 }
