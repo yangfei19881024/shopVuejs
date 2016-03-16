@@ -82,7 +82,7 @@
       flex-flow:row wrap;
       li{
         width:50%;
-        padding-bottom:1px;
+        // padding-bottom:1px;
         &:nth-child(odd){
           padding-right: 2px;
         }
