@@ -22,6 +22,9 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 
 ##注意项
 ```
-使用 <style lang='sass'></style>
+1.使用 <style lang='sass'></style>
 需要安装 sass-loader node-sass
+
+2. 复名组件 比如 TemplateTwo 写成 模板: <v-template-two> </v-template-two>
+   import VTemplateTwo from 'TemplateTwo.vue';
 ```
