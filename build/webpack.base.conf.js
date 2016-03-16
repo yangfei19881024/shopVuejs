@@ -12,7 +12,8 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.vue'],
     alias: {
-      'src': path.resolve(__dirname, '../src')
+      'src': path.resolve(__dirname, '../src'),
+      'lodash': path.resolve(__dirname, '../bower_components/lodash/dist/lodash.min.js')
     }
   },
   externals: {

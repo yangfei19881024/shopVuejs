@@ -3,99 +3,82 @@
     <swiper :imgs='slider' :config='config'></swiper>
     <div class="">
       <ul class="tab-item">
-        <li class="active">狗狗</li>
-        <li>猫猫</li>
-        <li>小宠</li>
-        <li>水族</li>
+        <li v-for='item in MainData' :class="{'active':$index===0}" data-id='{{item.TabId}}'>
+          {{item.TabName}}
+        </li>
       </ul>
       <div class="tab-content">
           <ul class="tab-content_items">
-            <li>
+            <li v-for='item in TypeList'>
               <a href="">
-                <img src="http://img.boqiicdn.com/Data/Shop/0/0/1/shopmobile_index_icon1423710611.png" alt="" />
-                <span>狗粮</span>
+                <img :src='item.TypeImg' alt="" />
+                <span v-text='item.TypeName'></span>
               </a>
             </li>
-            <li>
+            <li >
               <a href="">
-                <img src="http://img.boqiicdn.com/Data/Shop/0/0/1/shopmobile_index_icon1423710611.png" alt="" />
-                <span>狗粮</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="http://img.boqiicdn.com/Data/Shop/0/0/1/shopmobile_index_icon1423710611.png" alt="" />
-                <span>狗粮</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="http://img.boqiicdn.com/Data/Shop/0/0/1/shopmobile_index_icon1423710611.png" alt="" />
-                <span>狗粮</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="http://img.boqiicdn.com/Data/Shop/0/0/1/shopmobile_index_icon1423710611.png" alt="" />
-                <span>狗粮</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="http://img.boqiicdn.com/Data/Shop/0/0/1/shopmobile_index_icon1423710611.png" alt="" />
-                <span>狗粮</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="http://img.boqiicdn.com/Data/Shop/0/0/1/shopmobile_index_icon1423710611.png" alt="" />
-                <span>狗粮</span>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="http://img.boqiicdn.com/Data/Shop/0/0/1/shopmobile_index_icon1423710611.png" alt="" />
-                <span>狗粮</span>
+                <img src='http://s.boqii.com/static/images/more.png' alt="" />
+                <span>更多</span>
               </a>
             </li>
           </ul>
           <section class="tab-content-template">
-            <div class="template-one">
+            <template v-for='ad in AdList'>
               <div class="template-title">
-                <span>热卖推荐</span>
+                <span v-text='ad.TemplateName'></span>
               </div>
-              <div class="template-content">
-                <div class="template-content_left">
-                  <a href="">
-                    <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath11457623866_y.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="template-content_right">
-                  <a href="">
-                    <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath21457623866_y.jpg" alt="" />
-                  </a>
-                  <a href="">
-                    <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath31457623866_y.jpg" alt="" />
-                  </a>
-                </div>
-              </div>
-            </div>
 
-            <div class="template-two">
+              <template v-for='t in ad.Template'>
+
+                <div v-if='t.TemplateType == 2' class="template-two"> <!--模板2-->
+                  <ul class="template-content">
+                    <li>
+                      <a href="#">
+                        <img :src='t.Template[0].ImageUrl' alt="" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <img :src='t.Template[1].ImageUrl' alt="" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div v-if='t.TemplateType == 4' class="template-four"><!--模板4-->
+                  <div class="template-content">
+                    <div class="template-content_left">
+                      <a href="">
+                        <img :src="t.Template[0].ImageUrl" alt="" />
+                      </a>
+                    </div>
+                    <div class="template-content_right">
+                      <a href="">
+                        <img :src="t.Template[1].ImageUrl" alt="" />
+                      </a>
+                      <a href="">
+                        <img :src="t.Template[2].ImageUrl" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div v-if='t.TemplateType == 6' class="template-six"> <!--模板6-->
+                  <div class="template-content">
+                    <a href="#">
+                      <img :src="t.Template[0].ImageUrl" alt="" />
+                    </a>
+                  </div>
+                </div>
+              </template>
+            </template>
+
+
+            <!-- <div class="template-two">
               <div class="template-title">
                 <span>狗粮专区</span>
               </div>
               <ul class="template-content">
-                <li>
-                  <a href="#">
-                    <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath11457608689_y.jpg" alt="" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath11457608689_y.jpg" alt="" />
-                  </a>
-                </li>
                 <li>
                   <a href="#">
                     <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath11457608689_y.jpg" alt="" />
@@ -118,7 +101,7 @@
                   <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath11458052623_y.jpg" alt="" />
                 </a>
               </div>
-            </div>
+            </div> -->
 
           </section>
       </div>
@@ -128,6 +111,8 @@
 
 <script>
   import $ from "zepto";
+  import _ from "lodash";
+
   import Swiper from '../components/Swiper';
   import API from '../api/api';
 
@@ -136,7 +121,7 @@
       // $.showPreloader();
     },
     ready(){
-      //this.getApi();
+      this.getApi();
     },
     data(){
       return {
@@ -162,8 +147,12 @@
           }
         }).then( response => {
           console.log(response);
-          this.$set('slider',response.data.ResponseData.BannerList);
-          $.hidePreloader();
+          var data = response.data.ResponseData;
+          this.$set('slider',data.BannerList);
+          this.$set('MainData',data.MainData);
+          this.$set('TypeList',data.MainData[0].TypeList);
+          this.$set('AdList',data.MainData[0].AdList);
+          // $.hidePreloader();
         }, function (response) {
             // error callback
         });
@@ -178,7 +167,9 @@
 <style lang='sass'>
   @import '../styles/utils';
   @import '../styles/variables';
-
+  img{
+    vertical-align: top;
+  }
   .tab-item{
     display: flex;
     flex-flow: row nowrap;
@@ -266,7 +257,7 @@
     border-bottom: 1px solid $grayColor;
   }
 
-  .template-one{
+  .template-four{
     .template-content{
       display: flex;
       flex-flow: row nowrap;
@@ -304,7 +295,7 @@
         width:50%;
         padding-bottom:1px;
         &:nth-child(odd){
-          padding-right: 1px;
+          padding-right: 2px;
         }
         img{
           float:left;
@@ -313,4 +304,5 @@
     }
 
   }
+
 </style>

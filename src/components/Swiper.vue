@@ -31,7 +31,7 @@ export default {
 }
 </script>
 <style lang='sass' scoped>
-  $height: 200px;
+  $height: 150px;
   .swiper-container{
     height: $height;
   }
