@@ -1,5 +1,5 @@
 import Home from "../views/home"
-import GoodsLists from "../views/goodslists";
+import GoodsList from "../views/goodslist";
 
 export default function(router){
   router.map({
@@ -7,7 +7,7 @@ export default function(router){
           component: Home
       },
       '/list': {
-          component: GoodsLists
+          component: GoodsList
       }
   })
 

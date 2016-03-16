@@ -1,8 +1,27 @@
+@charset 'utf-8';
+/*======icons======*/
+.icons{
+  display: inline-block;
+  background-size: contain;
+}
 // 回到顶部
 .icon-top{
-  display: inline-block;
-  width: px2rem(50);
-  height: px2rem(50);
-  background-image: url(../assets/top.png);
-  background-size: contain;
+  @include icons(50,50,'../assets/top.png');
+}
+//卡片
+.icon-cards{
+  @include icons(50,50,'../assets/card.png');
+}
+
+// 导航箭头
+.navigator{
+  a{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid $mainColor;
+    border-right: none;
+    border-bottom: none;
+    transform: rotate(-45deg) translate3D(0,1px,0);
+  }
 }

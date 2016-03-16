@@ -1,4 +1,22 @@
+@charset 'utf-8';
+/**
+* var declaration
+*/
 $designWidth : 640; //如设计图是750
+
+/**
+* function ...
+*/
 @function px2rem( $px ){
     @return $px*320/$designWidth/20 + rem;
+}
+
+/**
+* mixins
+*/
+@mixin icons($width, $height, $imgurl){
+  @extend .icons;
+  width: px2rem($width);
+  height: px2rem($height);
+  background-image: url($imgurl);
 }
