@@ -94,7 +94,27 @@
             </template>
           </section>
       </div>
+
+
+
     </div>
+
+    <div class="userOperation">
+      <div class="">
+        <a href=''>登录</a>
+        <a href=''>注册</a>
+      </div>
+      <div class="">
+        <a href="javascript:;" v-touch:tap='toTop'>
+          <i class='icon-top'></i>
+        </a>
+      </div>
+    </div>
+
+    <v-footer></v-footer>
+
+    <v-cart></v-cart>
+
   </div>
 </template>
 
@@ -103,11 +123,14 @@
   import _ from "lodash";
 
   import Swiper from '../components/Swiper';
+  import VFooter from '../components/Footer';
+  import VCart from '../components/Cart';
+
   import API from '../api/api';
 
   export default {
     created(){
-      // $.showPreloader();
+      $.showPreloader();
     },
     ready(){
       this.getApi();
@@ -151,14 +174,19 @@
           this.$set('MainData',data.MainData);
           this.$set('TypeList',data.MainData[0].TypeList);
           this.$set('AdList',data.MainData[0].AdList);
-          // $.hidePreloader();
+          $.hidePreloader();
         }, function (response) {
             // error callback
         });
+      },
+      toTop(){
+        $('html').scrollTop(0);
       }
     },
     components:{
-      Swiper
+      Swiper,
+      VFooter,
+      VCart
     }
   }
 </script>
@@ -166,6 +194,8 @@
 <style lang='sass'>
   @import '../styles/utils';
   @import '../styles/variables';
+  @import '../styles/common';
+
   img{
     vertical-align: top;
   }
@@ -304,4 +334,32 @@
 
   }
 
+  .userOperation{
+    background: #FFF;
+    border-bottom: 1px solid $grayColor;
+    padding:10px 20px;
+    display: flex;
+    justify-content: space-between;
+    a{
+      color: $mainColor;
+      font-size: px2rem(24);
+      margin-right:10px;
+    }
+  }
+
+  .app_device{
+    margin-bottom: 10px;
+    a{
+      display: inline-block;
+      font-size: px2rem(24);
+      color: #575757;
+      &:nth-child(1){
+        border-right: 1px solid $grayColor;
+        padding-right: 10px;
+      }
+      &:nth-child(2){
+        padding-left: 5px;
+      }
+    }
+  }
 </style>
