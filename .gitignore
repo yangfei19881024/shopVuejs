@@ -4,3 +4,4 @@ bower_components/
 dist/
 npm-debug.log
 src/apidemo.php
+src/config/setting.js

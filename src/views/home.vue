@@ -126,6 +126,8 @@
   import VFooter from '../components/Footer';
   import VCart from '../components/Cart';
 
+  import Setting from "../config/setting";
+
   import API from '../api/api';
 
   export default {
@@ -162,7 +164,7 @@
       getApi(){
         const api = new API();
         api.http(this,{
-          url: 'http://s.boqii.com/apidemo.php',
+          url: Setting.API.shop_online,
           method: 'POST',
           data:{
             'Act': 'GetShoppingMallHomeData'
