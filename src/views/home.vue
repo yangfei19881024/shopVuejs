@@ -72,37 +72,6 @@
                 </div>
               </template>
             </template>
-
-
-            <!-- <div class="template-two">
-              <div class="template-title">
-                <span>狗粮专区</span>
-              </div>
-              <ul class="template-content">
-                <li>
-                  <a href="#">
-                    <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath11457608689_y.jpg" alt="" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath11457608689_y.jpg" alt="" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="template-three">
-              <div class="template-title">
-                <span>狗粮专区</span>
-              </div>
-              <div class="template-content">
-                <a href="#">
-                  <img src="http://img.boqiicdn.com/Data/Shop/0/0/0/shoppicpath11458052623_y.jpg" alt="" />
-                </a>
-              </div>
-            </div> -->
-
           </section>
       </div>
     </div>
