@@ -194,7 +194,7 @@
         display: block;
         font-size: px2rem(24);
         color: #575757;
-        transform: translate3D(0,-7px,0);
+        transform: translate3D(0,-3px,0);
       }
       img{
         width:70%;
