@@ -32,9 +32,12 @@ export default {
 </script>
 <style lang='sass' scoped>
   $height: 200px;
-  // .swiper-container{
-  //   height: $height;
-  // }
+  .swiper-container{
+    height: $height;
+  }
+  .swiper-container{
+    padding: 0;
+  }
   .swiper-pagination{
     background: rgba(255,255,255,0.6);
     border-radius: 5px;
