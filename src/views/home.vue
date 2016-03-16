@@ -3,8 +3,12 @@
     <swiper :imgs='slider' :config='config'></swiper>
     <div class="">
       <ul class="tab-item">
-        <li v-for='item in MainData' :class="{'active':$index===0}" data-id='{{item.TabId}}'>
-          {{item.TabName}}
+        <li
+          v-for='item in MainData'
+          v-touch:tap='toggleTab(item.TabId)'
+          :class="{'active':( ($index ===0 && isFirstTab == 0) || currentTab == item.TabId )}"
+          data-id='{{item.TabId}}'>
+            {{item.TabName}}
         </li>
       </ul>
       <div class="tab-content">
@@ -63,6 +67,21 @@
                   </div>
                 </div>
 
+                <div v-if='t.TemplateType == 5' class="template-two"> <!--模板5-->
+                  <ul class="template-content">
+                    <li>
+                      <a href="#">
+                        <img :src='t.Template[0].ImageUrl' alt="" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <img :src='t.Template[1].ImageUrl' alt="" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
                 <div v-if='t.TemplateType == 6' class="template-six"> <!--模板6-->
                   <div class="template-content">
                     <a href="#">
@@ -70,6 +89,7 @@
                     </a>
                   </div>
                 </div>
+
               </template>
             </template>
           </section>
@@ -101,11 +121,21 @@
         ],
         config: {
           autoplay: 1000
-        }
+        },
+        TypeList: [],
+        AdList: [],
+        currentTab: '',
+        isFirstTab: 0
       }
     },
     methods:{
-
+      toggleTab(TabId){
+        let data = _.filter(this.MainData,{'TabId':TabId});
+        this.currentTab = TabId;
+        this.isFirstTab = 1;
+        this.TypeList = data[0].TypeList;
+        this.AdList = data[0].AdList;
+      },
       getApi(){
         const api = new API();
         api.http(this,{
