@@ -1,84 +1,49 @@
 <template>
-  <ul class="goodslist-container">
-    <a href="">
+  <ul class="goodslist-container content infinite-scroll infinite-scroll-bottom" data-distance="100">
+    <a href='' v-for='item in goodList'>
       <li>
-        <div class="good-image">
-          <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
-        </div>
-        <div class="good-profile">
-        <!-- <div class="oversea">
-          <div class="">
-            <img src="../assets/usa.png" alt="" class='flag'/>
-            <span>美国</span>
+          <div class="good-image">
+            <img :src="item.GoodsImg" alt="" />
           </div>
-          <div class="">
-            <img src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" class='oversea-profile'/>
-          </div>
-        </div> -->
-
-          <div class="good-profile-container">
-            <div class="good-title">
-              宝路 幼犬粮肉类奶蔬菜谷物配方狗粮1.3kg
+          <div class="good-profile">
+          <!-- <div class="oversea">
+            <div class="">
+              <img src="../assets/usa.png" alt="" class='flag'/>
+              <span>美国</span>
             </div>
-            <div class="good-details">
+            <div class="">
+              <img src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" class='oversea-profile'/>
+            </div>
+          </div> -->
 
-              <div class="good-tags">
-                <span class="manjian">满减</span>
-                <span class="huangou">换购</span>
+            <div class="good-profile-container">
+              <div class="good-title" v-text='item.GoodsTitle'></div>
+              <div class="good-details">
+                <div class="good-tags" v-if='item.GoodsActionList'>
+                  <span class="manjian">满减</span>
+                  <span class="huangou">换购</span>
+                </div>
+                <div class="good-price-profile">
+                  <span class="good-price" v-text='item.GoodsPrice'></span>
+                  <span class="good-comments">评价{{item.GoodsCommentNum}}</span>
+                  <span class="good-sold">已售{{item.GoodsSaledNum}}</span>
+                </div>
               </div>
-              <div class="good-price-profile">
-                <span class="good-price">168.00元</span>
-                <span class="good-comments">评价5000</span>
-                <span class="good-sold">已售5689</span>
-              </div>
-
             </div>
           </div>
-
-        </div>
       </li>
     </a>
-    <a href="">
-      <li>
-        <div class="good-image">
-          <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
-        </div>
-        <div class="good-profile">
-        <div class="oversea">
-          <div class="">
-            <img src="../assets/usa.png" alt="" class='flag'/>
-            <span>美国</span>
-          </div>
-          <div class="">
-            <img src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" class='oversea-profile'/>
-          </div>
-        </div>
-
-          <div class="good-profile-container">
-            <div class="good-title">
-              宝路 幼犬粮肉类奶蔬菜谷物配方狗粮1.3kg
-            </div>
-            <div class="good-details">
-
-            <!--   <div class="good-tags">
-              <span class="manjian">满减</span>
-              <span class="huangou">换购</span>
-            </div> -->
-              <div class="good-price-profile">
-                <span class="good-price">168.00元</span>
-                <span class="good-comments">评价5000</span>
-                <span class="good-sold">已售5689</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-    </a>
+    <!--加载指示器-->
+    <div class="infinite-scroll-preloader">
+        <div class="preloader"></div>
+    </div>
   </ul>
 </template>
 
 <script>
-
+  export default{
+    props:['goodList']
+  }
 </script>
 
 <style lang='sass'>
@@ -86,6 +51,9 @@
   @import '../styles/variables';
   @import '../styles/common';
   /**商品列表**/
+  .goodslist-container{
+    overflow-x: hidden;
+  }
   .goodslist-container li{
     padding-top: 8px;
     height: px2rem(220);

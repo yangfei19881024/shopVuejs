@@ -39,23 +39,63 @@
   </section>
 
   <section class="goodslist">
-    <v-goods-list v-if='!card'></v-goods-list>
-    <v-goods-card v-if='card'></v-goods-card>
+    <v-goods-list :good-list='goodList' v-if='!card'></v-goods-list>
+    <v-goods-card :good-list='goodList' v-if='card'></v-goods-card>
   </section>
 </template>
 <script>
   import VGoodsList from '../components/GoodsList';
   import VGoodsCard from '../components/GoodsCard';
 
+  import Setting from "../config/setting";
+  import API from "../api/api";
+
   export default{
+    created(){
+      console.log("created");
+    },
     data(){
       return {
-        card: false
+        card: false,
+        goodList:[]
       }
+    },
+    ready(){
+      $.showPreloader();
+      this.getGoodsList();
     },
     methods:{
       changeCard(){
         this.card = !this.card;
+      },
+      getGoodsList(){
+
+        const api = new API();
+
+        api.http(this,{
+          url: Setting.API.shop_online,
+          method: 'POST',
+          data:{
+            'Act': 'GetShoppingMallGoodsList',
+            'FirstTypeId':1,
+            'ThirdTypeId':621,
+            'OrderTypeId':0,
+            'StartIndex':0,
+            'Number':8,
+            'BrandId':0,
+            'MinPrice':0,
+            'MaxPrice':99999999,
+            'StockType':'ALL'
+          }
+        }).then( response => {
+          console.log(response);
+          var data = response.data.ResponseData.GoodsData;
+          this.$set('goodList',data);
+          $.hidePreloader();
+        }, function (response) {
+            // error callback
+        });
+
       }
     },
     components:{
@@ -146,6 +186,18 @@
       }
     }
   }
+
+  .goodslist-container{
+    top: px2rem(185);
+  }
+
+  @media screen and (device-aspect-ratio: 16/9) {
+    .goodslist-container{
+      top: px2rem(180);
+    }
+  }
+
+
 
 
 </style>

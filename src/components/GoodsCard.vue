@@ -1,7 +1,21 @@
 <template>
   <ul class="goodslist-container-card">
-    <li>
+    <!-- <li v-for='item in goodList'>
       <a href="http://www.baidu.com">
+        <img :src="item.GoodsImg" alt="" />
+        <p class="good-title" v-text='item.GoodsTitle'></p>
+        <p class='good-price-container'>
+          <span class="good-price">{{item.GoodsOriPrice}}元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价{{item.GoodsCommentNum}}</span>
+          <span>已售{{item.GoodsSaledNum}}</span>
+        </p>
+      </a>
+    </li> -->
+    <li>
+      <a href="#">
         <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
         <p class="good-title">
           珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
@@ -32,10 +46,190 @@
         </p>
       </a>
     </li>
+
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
+        <p class="good-title">
+          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
+        </p>
+        <p class='good-price-container'>
+          <span class="good-price">234.90元</span>
+          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
+        </p>
+        <p class="custom-feedback">
+          <span>评价2021</span>
+          <span>已售404828</span>
+        </p>
+      </a>
+    </li>
+    
   </ul>
 </template>
 <script>
-
+  export default{
+    // props: ['goodList']
+  }
 </script>
 <style lang='sass'>
   @import '../styles/utils';
