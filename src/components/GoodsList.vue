@@ -1,5 +1,5 @@
 <template>
-  <ul class="goodslist-container content infinite-scroll infinite-scroll-bottom" data-distance="100">
+  <ul class="goodslist-container content infinite-scroll infinite-scroll-bottom" data-distance="200" v-load-more>
     <a href='' v-for='item in goodList'>
       <li>
           <div class="good-image">
@@ -105,6 +105,17 @@
         color: #343434;
         font-size: px2rem(30);
         width: 90%;
+        /**控制显示行数**/
+        // position:relative;
+        // line-height:1.5em;
+        // /* 高度为需要显示的行数*行高，比如这里我们显示两行，则为3 */
+        // height:3em;
+        // overflow:hidden;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
 
       .good-price{

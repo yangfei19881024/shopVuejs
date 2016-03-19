@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 import VueTouch from "vue-touch"
 import VueResource from "vue-resource"
 import routerConfig from './config/router'
+import loadMore from "./directive/loadMore";
+
 // Router
 Vue.use(VueRouter)
 
@@ -23,5 +25,6 @@ Vue.use(VueTouch)
 Vue.use(VueResource)
 Vue.http.options.emulateJSON = true
 
-/* eslint-disable no-new */
+Vue.directive('loadMore', loadMore)
+
 router.start(App, '#app')
