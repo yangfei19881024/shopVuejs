@@ -1,7 +1,7 @@
 <template>
   <ul class="goodslist-container content infinite-scroll infinite-scroll-bottom" data-distance="200" v-load-more>
-    <a href='' v-for='item in goodList'>
-      <li>
+
+      <li  v-for='item in goodList'>
           <div class="good-image">
             <img :src="item.GoodsImg" alt="" />
           </div>
@@ -32,7 +32,7 @@
             </div>
           </div>
       </li>
-    </a>
+
     <!--加载指示器-->
     <div class="infinite-scroll-preloader">
         <div class="preloader"></div>
@@ -41,8 +41,10 @@
 </template>
 
 <script>
+  import $ from "zepto";
+
   export default{
-    props:['goodList']
+    props:['goodList'],
   }
 </script>
 
