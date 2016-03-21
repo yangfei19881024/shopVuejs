@@ -48,9 +48,12 @@ export default {
   display: none;
 }
 .fade-transition {
-  transition: opacity .3s ease;
+  transition: all 0.6s ease-in-out;
+  transform: translate3d(0,0px,0);
+  opacity: 1;
 }
-.fade-enter, .fade-leave {
+.fade-enter,.fade-leave {
   opacity: 0;
+  transform: translate3d(0,100px,0);
 }
 </style>
