@@ -113,11 +113,7 @@
         // /* 高度为需要显示的行数*行高，比如这里我们显示两行，则为3 */
         // height:3em;
         // overflow:hidden;
-        overflow : hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
+        @include column(2);
       }
 
       .good-price{

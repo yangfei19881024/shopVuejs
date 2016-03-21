@@ -50,7 +50,6 @@
       </ul>
     </div>
   </section>
-  <h1>hello world!</h1>
   <section class="goodslist">
     <v-goods-list :good-list='goodList' v-if='!card'></v-goods-list>
     <v-goods-card :good-list='goodList' v-if='card'></v-goods-card>
@@ -232,6 +231,10 @@
 
   .goodslist-container{
     top: px2rem(185);
+  }
+
+  .goodslist-container-card{
+    @extend .goodslist-container;
   }
 
   @media screen and (device-aspect-ratio: 16/9) {

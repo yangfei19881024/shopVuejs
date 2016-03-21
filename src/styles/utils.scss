@@ -20,3 +20,14 @@ $designWidth : 640; //如设计图是750
   height: px2rem($height);
   background-image: url($imgurl);
 }
+
+/**
+* 控制行数
+*/
+@mixin column($num){
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+}
