@@ -60,6 +60,8 @@
   import Setting from "../config/setting";
   import API from "../api/api";
 
+  import $ from "zepto";
+
   export default{
     created(){
       console.log("created");
@@ -141,6 +143,10 @@
         }
       },
       search(){
+        if( !this.keyword ){
+          $.toast("请输入搜索关键字");
+          return;
+        }
         this.$router.go({
           path: `/list/f/${this.firstid}/t/${this.thirdid}/o/${this.orderid}`,
           query:{
