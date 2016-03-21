@@ -17,27 +17,40 @@
     <div class="conditon_selection_container">
       <ul>
         <li>
-          <a href="" class='active'>
+          <a
+            v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/-1',replace:true}
+            v-touch:tap="showSubCate"
+            :class="{'active': $route.params.orderid == -1 }">
             分类
             <i class="fa fa-caret-down"></i>
           </a>
         </li>
         <li>
-          <a v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/1',replace:true} >销量</a>
+          <a
+            v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/1',replace:true}
+            :class="{'active':$route.params.orderid == 1}">
+            销量</a>
         </li>
         <li>
-          <a v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/2'}>
+          <a
+            v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/'+priceorder}
+            v-touch:tap="changePrice"
+            :class="{'active':($route.params.orderid == 2) || ($route.params.orderid == 3)}" >
             价格
-            <i class="fa fa-long-arrow-down"></i>
+            <i class="fa fa-long-arrow-down"
+               :class="{'fa-long-arrow-up':$route.params.orderid == 3}"></i>
           </a>
         </li>
         <li>
-          <a href="" v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/4'} >评论</a>
+          <a
+            v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/4'}
+            :class="{'active':$route.params.orderid == 4}">
+          评论</a>
         </li>
       </ul>
     </div>
   </section>
-
+  <h1>hello world!</h1>
   <section class="goodslist">
     <v-goods-list :good-list='goodList' v-if='!card'></v-goods-list>
     <v-goods-card :good-list='goodList' v-if='card'></v-goods-card>
@@ -58,10 +71,15 @@
 
       data(transition){
 
-        const api = new API();
-
         let params = this.$route.params;
 
+        if( params.orderid == -1 ){
+          return;
+        }
+
+        const api = new API();
+
+        $.showPreloader();
         api.http(this,{
           url: Setting.API.shop_online,
           method: 'POST',
@@ -92,7 +110,9 @@
     data(){
       return {
         card: false,
-        goodList:[],
+        goodList: [],
+        showsubcate: false,
+        priceorder: 2,
         //参数获取
         FirstTypeId: this.$route.params.firstid,
         ThirdTypeId: this.$route.params.thirdid,
@@ -104,12 +124,22 @@
     },
     ready(){
       console.log('ready');
-      $.showPreloader();
     },
     methods:{
       changeCard(){
         this.card = !this.card;
       },
+      showSubCate(){
+        this.showsubcate = !this.showsubcate;
+        // alert("showsubcate");
+      },
+      changePrice(){
+        if ( this.$route.params.orderid == 2 ){
+          this.priceorder = 3;
+        }else if( this.$route.params.orderid == 3 ){
+          this.priceorder = 2;
+        }
+      }
     },
     components:{
       VGoodsList,
