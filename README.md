@@ -54,6 +54,9 @@ route:{
     transition.next();
   }
 
+4.动态参数 注意 里面变量怎么放！！
+v-link="{'path': '/list/f/'+firstid+'/t/'+thirdid+'/o/1','query': {'keyword': keyword }, replace: true }"
+
 ```
 #需优化或完善
 ```

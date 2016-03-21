@@ -5,11 +5,12 @@
         <a v-link="{path:'/home'}"></a>
       </div>
       <div class="search_bar">
-        <input type="text" placeholder='请输入搜索关键字' class='search_text'>
+        <input type="text" placeholder='请输入搜索关键字' v-model='keyword' class='search_text'>
+        <button v-touch:tap="search" type="button" class="search_btn">
       </div>
       <div class="operation">
         <i class='icon-cards' v-touch:tap='changeCard'></i>
-        <a href=''>筛选</a>
+        <a href='javascript:;'>筛选</a>
       </div>
     </div>
   </header>
@@ -18,7 +19,7 @@
       <ul>
         <li>
           <a
-            v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/-1',replace:true}
+            v-link="{'path':'/list/f/'+firstid+'/t/'+thirdid+'/o/-1',replace:true}"
             v-touch:tap="showSubCate"
             :class="{'active': $route.params.orderid == -1 }">
             分类
@@ -26,14 +27,12 @@
           </a>
         </li>
         <li>
-          <a
-            v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/1',replace:true}
+          <a v-link="{'path': '/list/f/'+firstid+'/t/'+thirdid+'/o/1','query': {'keyword': keyword }, replace: true }"
             :class="{'active':$route.params.orderid == 1}">
             销量</a>
         </li>
         <li>
-          <a
-            v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/'+priceorder}
+          <a v-link="{'path':'/list/f/'+firstid+'/t/'+thirdid+'/o/'+priceorder,'query': {'keyword': keyword }, replace: true }"
             v-touch:tap="changePrice"
             :class="{'active':($route.params.orderid == 2) || ($route.params.orderid == 3)}" >
             价格
@@ -42,8 +41,7 @@
           </a>
         </li>
         <li>
-          <a
-            v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/4'}
+          <a v-link="{'path':'/list/f/'+firstid+'/t/'+thirdid+'/o/4','query': {'keyword': keyword }, replace: true }"
             :class="{'active':$route.params.orderid == 4}">
           评论</a>
         </li>
@@ -68,9 +66,12 @@
     },
     route:{
 
-      data(transition){
+      data(){
 
         let params = this.$route.params;
+        let query = this.$route.query;
+
+        this.keyword = query.keyword || '';
 
         if( params.orderid == -1 ){
           return;
@@ -87,6 +88,7 @@
             'FirstTypeId': params.firstid,
             'ThirdTypeId': params.thirdid,
             'OrderTypeId': params.orderid || 1,
+            'KeyWord': query.keyword || '',
             'StartIndex': 0,
             'Number': 8,
             'BrandId': params.brandid || 0,
@@ -102,8 +104,6 @@
         }, function (response) {
             // error callback
         });
-
-        transition.next();
       }
     },
     data(){
@@ -112,13 +112,14 @@
         goodList: [],
         showsubcate: false,
         priceorder: 2,
+        keyword: this.$route.query.keyword || '',
         //参数获取
-        FirstTypeId: this.$route.params.firstid,
-        ThirdTypeId: this.$route.params.thirdid,
-        OrderTypeId: this.$route.params.orderid || 1,
-        BrandId: this.$route.params.brandid || 0,
-        MinPrice: this.$route.params.minprice || 0,
-        MaxPrice: this.$route.params.maxprice || 0,
+        firstid: this.$route.params.firstid,
+        thirdid: this.$route.params.thirdid,
+        orderid: this.$route.params.orderid || 1,
+        brandid: this.$route.params.brandid || 0,
+        minprice: this.$route.params.minprice || 0,
+        maxprice: this.$route.params.maxprice || 0,
       }
     },
     ready(){
@@ -138,6 +139,14 @@
         }else if( this.$route.params.orderid == 3 ){
           this.priceorder = 2;
         }
+      },
+      search(){
+        this.$router.go({
+          path: `/list/f/${this.firstid}/t/${this.thirdid}/o/${this.orderid}`,
+          query:{
+            keyword: this.keyword
+          }
+        });
       }
     },
     components:{
@@ -174,6 +183,18 @@
       position: absolute;
       right: 5px;
       top: 3px;
+      z-index:2;
+    }
+    .search_btn{
+      width: px2rem(36);
+      height: px2rem(36);
+      position: absolute;
+      right: 5px;
+      top: 3px;
+      display: inline-block;
+      border: none;
+      z-index:3;
+      opacity: 0;
     }
     .search_text{
       width: 100%;
