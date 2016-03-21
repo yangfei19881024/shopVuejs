@@ -2,7 +2,7 @@
   <header>
     <div class="header">
       <div class='navigator'>
-        <a href=""></a>
+        <a v-link="{path:'/home'}"></a>
       </div>
       <div class="search_bar">
         <input type="text" placeholder='请输入搜索关键字' class='search_text'>
@@ -23,16 +23,16 @@
           </a>
         </li>
         <li>
-          <a href="">销量</a>
+          <a v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/1',replace:true} >销量</a>
         </li>
         <li>
-          <a href="">
+          <a v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/2'}>
             价格
             <i class="fa fa-long-arrow-down"></i>
           </a>
         </li>
         <li>
-          <a href="">评论</a>
+          <a href="" v-link={'path':'/list/f/'+FirstTypeId+'/t/'+ThirdTypeId+'/o/4'} >评论</a>
         </li>
       </ul>
     </div>
@@ -53,39 +53,28 @@
   export default{
     created(){
       console.log("created");
+    },
+    route:{
 
-    },
-    data(){
-      return {
-        card: false,
-        goodList:[]
-      }
-    },
-    ready(){
-      $.showPreloader();
-      this.getGoodsList();
-    },
-    methods:{
-      changeCard(){
-        this.card = !this.card;
-      },
-      getGoodsList(){
+      data(transition){
 
         const api = new API();
+
+        let params = this.$route.params;
 
         api.http(this,{
           url: Setting.API.shop_online,
           method: 'POST',
           data:{
             'Act': 'GetShoppingMallGoodsList',
-            'FirstTypeId':1,
-            'ThirdTypeId':621,
-            'OrderTypeId':0,
-            'StartIndex':0,
-            'Number':8,
-            'BrandId':0,
-            'MinPrice':0,
-            'MaxPrice':99999999,
+            'FirstTypeId': params.firstid,
+            'ThirdTypeId': params.thirdid,
+            'OrderTypeId': params.orderid || 1,
+            'StartIndex': 0,
+            'Number': 8,
+            'BrandId': params.brandid || 0,
+            'MinPrice': params.minprice || 0,
+            'MaxPrice': params.maxprice || 999999,
             'StockType':'ALL'
           }
         }).then( response => {
@@ -97,7 +86,30 @@
             // error callback
         });
 
+        transition.next();
       }
+    },
+    data(){
+      return {
+        card: false,
+        goodList:[],
+        //参数获取
+        FirstTypeId: this.$route.params.firstid,
+        ThirdTypeId: this.$route.params.thirdid,
+        OrderTypeId: this.$route.params.orderid || 1,
+        BrandId: this.$route.params.brandid || 0,
+        MinPrice: this.$route.params.minprice || 0,
+        MaxPrice: this.$route.params.maxprice || 0,
+      }
+    },
+    ready(){
+      console.log('ready');
+      $.showPreloader();
+    },
+    methods:{
+      changeCard(){
+        this.card = !this.card;
+      },
     },
     components:{
       VGoodsList,

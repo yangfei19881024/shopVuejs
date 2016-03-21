@@ -27,6 +27,33 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 
 2. 复名组件 比如 TemplateTwo 写成 模板: <v-template-two> </v-template-two>
    import VTemplateTwo from 'TemplateTwo.vue';
+
+3. 同一路径的比如 由 /message/1 切换到 /message/2 在route 里做配置 比如
+
+route:{
+
+  data(transition){
+
+    const api = new API();
+
+     //注意的是 这里的 参数获取通过 this.$route.params['参数名'] 来动态获取
+
+    api.http(this,{
+      url: Setting.API.shop_online,
+      method: 'POST',
+      data:{
+        'Act': 'GetShoppingMallGoodsList',
+        //。。。。。其他参数
+      }
+    }).then( response => {
+        // success callback
+    }, function (response) {
+        // error callback
+    });
+
+    transition.next();
+  }
+
 ```
 #需优化或完善
 ```

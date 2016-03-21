@@ -6,7 +6,7 @@ export default function(router){
       '/home': {
           component: Home
       },
-      '/list': {
+      '/list/f/:firstid/t/:thirdid/o/:orderid': {
           component: GoodsList
       }
   })

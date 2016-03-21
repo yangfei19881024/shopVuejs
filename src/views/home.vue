@@ -14,7 +14,8 @@
       <div class="tab-content">
           <ul class="tab-content_items">
             <li v-for='item in TypeList'>
-              <a href="">
+              <a
+                v-link="{ path: '/list/f/'+item.firstId+'/t/'+item.TypeId+'/o/0' }">
                 <img :src='item.TypeImg' alt="" />
                 <span v-text='item.TypeName'></span>
               </a>
@@ -95,7 +96,7 @@
         TypeList: [],
         AdList: [],
         currentTab: '',
-        isFirstTab: 0
+        isFirstTab: 0,
       }
     },
     methods:{
@@ -104,8 +105,10 @@
         this.currentTab = TabId;
         this.isFirstTab = 1;
         this.TypeList = data[0].TypeList;
+        this.TypeList = this.composedTypeList(data[0],data[0].TypeList);
         this.AdList = data[0].AdList;
       },
+
       getApi(){
         const api = new API();
         api.http(this,{
@@ -119,11 +122,34 @@
           var data = response.data.ResponseData;
           this.$set('slider',data.BannerList);
           this.$set('MainData',data.MainData);
-          this.$set('TypeList',data.MainData[0].TypeList);
+          //
+          let typelist = data.MainData[0].TypeList;
+          //
+          // typelist = typelist.map((item, index) => {
+          //   return {
+          //     ...typelist[index],
+          //     firstId: data.MainData[0].TabId
+          //   }
+          // });
+
+          typelist = this.composedTypeList(data.MainData[0],typelist);
+
+          console.log('typelist');
+          console.log(typelist);
+          this.$set('TypeList',typelist);
           this.$set('AdList',data.MainData[0].AdList);
           $.hidePreloader();
         }, function (response) {
             // error callback
+        });
+
+      },
+      composedTypeList(MainData,typelist){
+        return typelist.map((item, index) => {
+          return {
+            ...typelist[index],
+            firstId: MainData.TabId
+          }
         });
       },
       toTop(){
