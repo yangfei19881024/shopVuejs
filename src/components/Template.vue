@@ -84,7 +84,7 @@
         width:50%;
         // padding-bottom:1px;
         &:nth-child(odd){
-          padding-right: 2px;
+          padding-right: 1px;
         }
         img{
           float:left;
