@@ -1,9 +1,9 @@
 <template>
-  <ul class="goodslist-container content infinite-scroll infinite-scroll-bottom" data-distance="200" v-load-more>
+  <ul class="goodslist-container content infinite-scroll infinite-scroll-bottom" data-distance="200" v-load-more v-lazy-load>
 
-      <li  v-for='item in goodList'>
+      <li v-for='item in goodList'>
           <div class="good-image">
-            <img :src="item.GoodsImg" alt="" />
+            <img data-src="{{item.GoodsImg}}" alt="" />
           </div>
           <div class="good-profile">
           <!-- <div class="oversea">
@@ -65,6 +65,9 @@
     flex-flow: row nowrap;
     .good-image{
       width: px2rem(190);
+      background-image: url(../assets/default.jpg);
+      background-size: cover;
+      background-position: center center;
     }
     .good-profile{
       flex: 1;

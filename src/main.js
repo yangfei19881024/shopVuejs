@@ -4,7 +4,8 @@ import VueRouter from 'vue-router'
 import VueTouch from "vue-touch"
 import VueResource from "vue-resource"
 import routerConfig from './config/router'
-import loadMore from "./directive/loadMore";
+import loadMore from "./directive/loadMore"
+import lazyLoad from "./directive/lazyLoad"
 
 // Router
 Vue.use(VueRouter)
@@ -26,5 +27,6 @@ Vue.use(VueResource)
 Vue.http.options.emulateJSON = true
 
 Vue.directive('loadMore', loadMore)
+Vue.directive('lazyLoad', lazyLoad)
 
 router.start(App, '#app')
