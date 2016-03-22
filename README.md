@@ -60,6 +60,7 @@ v-link="{'path': '/list/f/'+firstid+'/t/'+thirdid+'/o/1','query': {'keyword': ke
 ```
 #需优化或完善
 ```
-1.图片懒加载 指令
+1.图片懒加载 指令（首页列表页面）
 2.快速加载 css 样式资源
+3.loading bar
 ```
