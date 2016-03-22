@@ -3,7 +3,7 @@
 
       <li v-for='item in goodList'>
           <div class="good-image">
-            <img data-src="{{item.GoodsImg}}" alt="" />
+            <img data-src="{{item.GoodsImg}}" class='lazy' alt="" />
           </div>
           <div class="good-profile">
           <!-- <div class="oversea">

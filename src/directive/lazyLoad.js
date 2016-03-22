@@ -36,26 +36,22 @@ export default {
           return !$.belowthefold(element) && !$.abovethetop(element)
       };
 
-      boqii_loading.loadImg = function (li) {
-          if (li.find('img[data-src]').length) {
-
-              var img = li.find('img[data-src]'),
-                  src = img.attr('data-src');
-
+      boqii_loading.loadImg = function (img) {
+          if (!img.attr('src')) {
+              var src = img.attr('data-src');
               img.attr('src', src).load(function () {
-                  img.css("padding-bottom",0);
-      //             img.removeAttr('data-src');
+                  //img.removeAttr('data-src');
               });
           }
       };
 
       boqii_loading.getInViewportList = function () {
-          var list = $(el).find('li'),
+          var list = $(el).find('.lazy'),
               ret = [];
           list.each(function (i) {
-              var li = list.eq(i);
-              if ($.inViewport(li)) {
-                  boqii_loading.loadImg(li);
+              var img = list.eq(i);
+              if ($.inViewport(img)) {
+                  boqii_loading.loadImg(img);
               }
           });
       };
