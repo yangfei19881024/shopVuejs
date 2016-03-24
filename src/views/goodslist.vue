@@ -134,7 +134,7 @@
           }
         });
       },
-      fetchList(strategy='newadd'){
+      fetchList(action='newadd'){
 
         this.loading = true;
 
@@ -152,7 +152,7 @@
           $('.goodsList').scrollTop(0);
         }
 
-        if( strategy == 'newadd' ){
+        if( action == 'newadd' ){
             $.showPreloader();
         }
 
@@ -178,9 +178,9 @@
           console.log(response);
           this.isLoading = false;
           var data = response.data.ResponseData.GoodsData;
-          if( strategy == 'newadd' ){
+          if( action == 'newadd' || action == 'refresh' ){
               this.$set('goodList',data);
-          }else if( strategy == 'pushdata' ){
+          }else if( action == 'pushdata' ){
               this.goodList = [...this.goodList,...data];
 
               // let element = $('.goodsList');
@@ -188,6 +188,12 @@
               // element.scrollTop(scrollTop)
           }
           $.hidePreloader();
+
+          if( action == 'refresh' ){ //上拉刷新
+            $.pullToRefreshDone('.pull-to-refresh-content')
+            $.hideIndicator()
+          }
+
         }, function (response) {
             // error callback
         });
@@ -203,7 +209,8 @@
 
       },
       refresh(){
-        console.log('refresh');
+        this.startIndex = 0;
+        this.fetchList('refresh');
       }
     },
     components:{
@@ -263,7 +270,10 @@
       font-size: 15px;
     }
   }
-
+  .conditon_selection{
+    position: relative;
+    z-index: 10;
+  }
   .operation{
     width: 65px;
     text-align: right;

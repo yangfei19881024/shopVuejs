@@ -1,42 +1,49 @@
 <template>
-  <ul class="goodslist-container content">
-      <li v-for='item in goodList'>
-          <div class="good-image">
-            <img data-src="{{item.GoodsImg}}" class='lazy' alt="" />
-          </div>
-          <div class="good-profile">
-          <!-- <div class="oversea">
-            <div class="">
-              <img src="../assets/usa.png" alt="" class='flag'/>
-              <span>美国</span>
-            </div>
-            <div class="">
-              <img src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" class='oversea-profile'/>
-            </div>
-          </div> -->
+  <div class="">
+    <div class="pull-to-refresh-layer">
+      <div class="preloader"></div>
+      <div class="pull-to-refresh-arrow"></div>
+    </div>
 
-            <div class="good-profile-container">
-              <div class="good-title" v-text='item.GoodsTitle'></div>
-              <div class="good-details">
-                <div class="good-tags" v-if='item.GoodsActionList'>
-                  <span class="manjian">满减</span>
-                  <span class="huangou">换购</span>
-                </div>
-                <div class="good-price-profile">
-                  <span class="good-price" v-text='item.GoodsPrice'></span>
-                  <span class="good-comments">评价{{item.GoodsCommentNum}}</span>
-                  <span class="good-sold">已售{{item.GoodsSaledNum}}</span>
+    <ul class="goodslist-container">
+        <li v-for='item in goodList'>
+            <div class="good-image">
+              <img data-src="{{item.GoodsImg}}" class='lazy' alt="" />
+            </div>
+            <div class="good-profile">
+            <!-- <div class="oversea">
+              <div class="">
+                <img src="../assets/usa.png" alt="" class='flag'/>
+                <span>美国</span>
+              </div>
+              <div class="">
+                <img src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" class='oversea-profile'/>
+              </div>
+            </div> -->
+
+              <div class="good-profile-container">
+                <div class="good-title" v-text='item.GoodsTitle'></div>
+                <div class="good-details">
+                  <div class="good-tags" v-if='item.GoodsActionList'>
+                    <span class="manjian">满减</span>
+                    <span class="huangou">换购</span>
+                  </div>
+                  <div class="good-price-profile">
+                    <span class="good-price" v-text='item.GoodsPrice'></span>
+                    <span class="good-comments">评价{{item.GoodsCommentNum}}</span>
+                    <span class="good-sold">已售{{item.GoodsSaledNum}}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-      </li>
+        </li>
 
-    <!--加载指示器-->
-    <div class="infinite-scroll-preloader">
-        <div class="preloader"></div>
-    </div>
-  </ul>
+      <!--加载指示器-->
+      <div class="infinite-scroll-preloader">
+          <div class="preloader"></div>
+      </div>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -51,6 +58,11 @@
   @import '../styles/utils';
   @import '../styles/variables';
   @import '../styles/common';
+  //
+  .content{
+    top: 2.4rem;
+  }
+
   /**商品列表**/
   .goodslist-container{
     overflow-x: hidden;
