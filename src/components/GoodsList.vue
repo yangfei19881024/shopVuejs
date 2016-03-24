@@ -1,7 +1,8 @@
 <template>
-  <ul class="goodslist-container content infinite-scroll infinite-scroll-bottom" data-distance="200" v-load-more v-lazy-load>
+  <ul class="goodslist-container goodsList content">
 
       <li v-for='item in goodList'>
+        <a href="">
           <div class="good-image">
             <img data-src="{{item.GoodsImg}}" class='lazy' alt="" />
           </div>
@@ -31,6 +32,7 @@
               </div>
             </div>
           </div>
+        </a>
       </li>
 
     <!--加载指示器-->
@@ -56,7 +58,7 @@
   .goodslist-container{
     overflow-x: hidden;
   }
-  .goodslist-container li{
+  .goodslist-container a{
     padding-top: 8px;
     height: px2rem(220);
     background: #FFF;

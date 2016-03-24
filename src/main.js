@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 import VueTouch from "vue-touch"
 import VueResource from "vue-resource"
 import routerConfig from './config/router'
-import loadMore from "./directive/loadMore"
 import lazyLoad from "./directive/lazyLoad"
+import infiniteScroll from "./directive/infiniteScroll"
 
 // Router
 Vue.use(VueRouter)
@@ -26,7 +26,7 @@ Vue.use(VueTouch)
 Vue.use(VueResource)
 Vue.http.options.emulateJSON = true
 
-Vue.directive('loadMore', loadMore)
 Vue.directive('lazyLoad', lazyLoad)
+Vue.directive('infiniteScroll', infiniteScroll)
 
 router.start(App, '#app')

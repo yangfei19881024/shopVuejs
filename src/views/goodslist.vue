@@ -49,8 +49,8 @@
     </div>
   </section>
   <section class="goodslist">
-    <v-goods-list :good-list='goodList' v-if='!card'></v-goods-list>
-    <v-goods-card :good-list='goodList' v-if='card'></v-goods-card>
+    <v-goods-list :good-list='goodList' v-if='!card' v-infinite-scroll='loadMore' v-lazy-load></v-goods-list>
+    <v-goods-card :good-list='goodList' v-if='card' v-infinite-scroll='loadMore'></v-goods-card>
   </section>
 </template>
 <script>
@@ -67,45 +67,8 @@
       console.log("created");
     },
     route:{
-
       data(){
-
-        let params = this.$route.params;
-        let query = this.$route.query;
-
-        this.keyword = query.keyword || '';
-
-        if( params.orderid == -1 ){
-          return;
-        }
-
-        const api = new API();
-
-        $.showPreloader();
-        api.http(this,{
-          url: Setting.API.shop_online,
-          method: 'POST',
-          data:{
-            'Act': 'GetShoppingMallGoodsList',
-            'FirstTypeId': params.firstid,
-            'ThirdTypeId': params.thirdid,
-            'OrderTypeId': params.orderid || 1,
-            'KeyWord': query.keyword || '',
-            'StartIndex': 0,
-            'Number': 8,
-            'BrandId': params.brandid || 0,
-            'MinPrice': params.minprice || 0,
-            'MaxPrice': params.maxprice || 999999,
-            'StockType':'ALL'
-          }
-        }).then( response => {
-          console.log(response);
-          var data = response.data.ResponseData.GoodsData;
-          this.$set('goodList',data);
-          $.hidePreloader();
-        }, function (response) {
-            // error callback
-        });
+        this.fetchList();
       }
     },
     data(){
@@ -114,6 +77,8 @@
         goodList: [],
         showsubcate: false,
         priceorder: 2,
+        startIndex: 0,
+        loading: false,
         keyword: this.$route.query.keyword || '',
         //参数获取
         firstid: this.$route.params.firstid,
@@ -153,6 +118,74 @@
             keyword: this.keyword
           }
         });
+      },
+      fetchList(strategy='newadd'){
+
+        this.loading = true;
+
+        let params = this.$route.params;
+        let query = this.$route.query;
+
+        this.keyword = query.keyword || '';
+
+        if( params.orderid == -1 ){
+          return;
+        }
+
+        if( params.orderid > 0){
+          this.startIndex = 0;
+          $('.goodsList').scrollTop(0);
+        }
+
+        if( strategy == 'newadd' ){
+            $.showPreloader();
+        }
+
+        const api = new API();
+
+        api.http(this,{
+          url: Setting.API.shop_online,
+          method: 'POST',
+          data:{
+            'Act': 'GetShoppingMallGoodsList',
+            'FirstTypeId': params.firstid,
+            'ThirdTypeId': params.thirdid,
+            'OrderTypeId': params.orderid || 1,
+            'KeyWord': query.keyword || '',
+            'StartIndex': this.startIndex,
+            'Number': 8,
+            'BrandId': params.brandid || 0,
+            'MinPrice': params.minprice || 0,
+            'MaxPrice': params.maxprice || 999999,
+            'StockType':'ALL'
+          }
+        }).then( response => {
+          console.log(response);
+          this.isLoading = false;
+          var data = response.data.ResponseData.GoodsData;
+          if( strategy == 'newadd' ){
+              this.$set('goodList',data);
+          }else if( strategy == 'pushdata' ){
+              this.goodList = [...this.goodList,...data];
+
+              // let element = $('.goodsList');
+              // let scrollTop = element[0].scrollHeight - element.height() - 20;
+              // element.scrollTop(scrollTop)
+          }
+          $.hidePreloader();
+        }, function (response) {
+            // error callback
+        });
+      },
+      loadMore(){
+        console.log('开始加载了');
+
+        if( this.isLoading ){ //正在加载中，停止
+          return;
+        }
+        this.startIndex += 8;
+        this.fetchList('pushdata');
+
       }
     },
     components:{

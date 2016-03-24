@@ -14,31 +14,17 @@
         </p>
       </a>
     </li>
-    <!-- <li>
-      <a href="#">
-        <img src="http://img.boqiicdn.com/Data/Shop/0/0/42/shoppicpath11457078044.jpg" alt="" />
-        <p class="good-title">
-          珍宝SANPO-AC全犬种成犬粮 出口外销狗粮15kg
-        </p>
-        <p class='good-price-container'>
-          <span class="good-price">234.90元</span>
-          <img class='oversea-logo' src="http://stest.boqii.com/static/images/global/logo_global.png" alt="" />
-        </p>
-        <p class="custom-feedback">
-          <span>评价2021</span>
-          <span>已售404828</span>
-        </p>
-      </a>
-    </li> -->
-
+    <!--加载指示器-->
+    <div class="infinite-scroll-preloader">
+        <div class="preloader"></div>
+    </div>
   </ul>
 </template>
 <script>
   export default{
     props: ['goodList'],
     ready(){
-      console.log('商品列表');
-      console.log(this.goodList);
+
     }
   }
 </script>
