@@ -63,4 +63,5 @@ v-link="{'path': '/list/f/'+firstid+'/t/'+thirdid+'/o/1','query': {'keyword': ke
 1.图片懒加载 指令（首页列表页面）
 2.快速加载 css 样式资源
 3.loading bar
+4.事件代理
 ```

@@ -48,9 +48,23 @@
       </ul>
     </div>
   </section>
-  <section class="goodslist">
-    <v-goods-list :good-list='goodList' v-if='!card' v-infinite-scroll='loadMore' v-lazy-load></v-goods-list>
-    <v-goods-card :good-list='goodList' v-if='card' v-infinite-scroll='loadMore'></v-goods-card>
+  <section class="goodslist-container">
+    <v-goods-list
+      :good-list='goodList'
+      v-if='!card'
+      v-lazy-load
+      v-infinite-scroll='loadMore'
+      v-pull-to-refresh="refresh"
+      distance="55"
+      >
+    </v-goods-list>
+
+    <v-goods-card
+      :good-list='goodList'
+      v-if='card'
+      v-infinite-scroll='loadMore'
+      >
+    </v-goods-card>
   </section>
 </template>
 <script>
@@ -66,6 +80,9 @@
     created(){
       console.log("created");
     },
+    ready () {
+      $.init()
+    },
     route:{
       data(){
         this.fetchList();
@@ -78,6 +95,7 @@
         showsubcate: false,
         priceorder: 2,
         startIndex: 0,
+        pageStep: 8,
         loading: false,
         keyword: this.$route.query.keyword || '',
         //参数获取
@@ -88,9 +106,6 @@
         minprice: this.$route.params.minprice || 0,
         maxprice: this.$route.params.maxprice || 0,
       }
-    },
-    ready(){
-      console.log('ready');
     },
     methods:{
       changeCard(){
@@ -153,7 +168,7 @@
             'OrderTypeId': params.orderid || 1,
             'KeyWord': query.keyword || '',
             'StartIndex': this.startIndex,
-            'Number': 8,
+            'Number': this.pageStep,
             'BrandId': params.brandid || 0,
             'MinPrice': params.minprice || 0,
             'MaxPrice': params.maxprice || 999999,
@@ -183,9 +198,12 @@
         if( this.isLoading ){ //正在加载中，停止
           return;
         }
-        this.startIndex += 8;
+        this.startIndex += this.pageStep;
         this.fetchList('pushdata');
 
+      },
+      refresh(){
+        console.log('refresh');
       }
     },
     components:{

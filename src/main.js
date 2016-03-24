@@ -6,6 +6,7 @@ import VueResource from "vue-resource"
 import routerConfig from './config/router'
 import lazyLoad from "./directive/lazyLoad"
 import infiniteScroll from "./directive/infiniteScroll"
+import pullToRefresh from "./directive/pullToRefresh"
 
 // Router
 Vue.use(VueRouter)
@@ -28,5 +29,6 @@ Vue.http.options.emulateJSON = true
 
 Vue.directive('lazyLoad', lazyLoad)
 Vue.directive('infiniteScroll', infiniteScroll)
+Vue.directive('pullToRefresh', pullToRefresh)
 
 router.start(App, '#app')
