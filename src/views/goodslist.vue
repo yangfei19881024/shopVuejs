@@ -90,7 +90,7 @@
       }
     },
     events:{
-      goodlistp:function(data){
+      goodlistp: function(data){
         console.log(data);
       }
     },
