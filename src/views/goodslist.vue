@@ -55,6 +55,7 @@
       v-lazy-load
       v-infinite-scroll='loadMore'
       v-pull-to-refresh="refresh"
+      v-event-delegator='li'
       distance="55"
       >
     </v-goods-list>
@@ -86,6 +87,11 @@
     route:{
       data(){
         this.fetchList();
+      }
+    },
+    events:{
+      goodlistp:function(data){
+        console.log(data);
       }
     },
     data(){

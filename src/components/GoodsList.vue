@@ -6,7 +6,7 @@
     </div>
 
     <ul class="goodslist-container">
-        <li v-for='item in goodList'>
+        <li v-for='item in goodList' data-index='{{$index}}'>
             <div class="good-image">
               <img data-src="{{item.GoodsImg}}" class='lazy' alt="" />
             </div>
@@ -51,6 +51,11 @@
 
   export default{
     props:['goodList'],
+    created(){
+      setTimeout(()=>{
+        this.$dispatch('goodlistp','lalal');
+      },2000);
+    }
   }
 </script>
 
