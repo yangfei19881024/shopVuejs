@@ -1,18 +1,21 @@
 <template>
-  <div class="swiper-container" data-space-between='10'>
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="imgItem in imgs">
+
+  <div id='slider' class='swipe'>
+    <div class='swipe-wrap'>
+      <div v-for="imgItem in imgs">
         <a href="javascript:;" v-touch:tap='redirect(imgItem.target)' >
           <img :src="imgItem.ImageUrl" alt="">
         </a>
       </div>
     </div>
-    <div class="swiper-pagination"></div>
   </div>
+
+
 </template>
 
 <script>
 import $ from 'zepto'
+import Swiper from "../assets/vendor/swiper.js"
 
 export default {
   props: {
@@ -20,8 +23,20 @@ export default {
     config: Object
   },
   ready () {
-      $(this.$el).swiper(this.config);
+    setTimeout(()=>{
+      window.mySwipe = new Swiper(this.$el, {
+        startSlide: 0,
+        speed: 400,
+        auto: 1000,
+        continuous: true,
+        disableScroll: false,
+        stopPropagation: false,
+        callback: function(index, elem) {},
+        transitionEnd: function(index, elem) {}
+      });
+    },600)
   },
+
   methods: {
     redirect (target) {
       location.href = `http://${target}`
@@ -30,7 +45,19 @@ export default {
 }
 </script>
 <style lang='sass'>
-  .swiper-container{
-    padding-bottom: 0;
+  .swipe {
+    overflow: hidden;
+    visibility: hidden;
+    position: relative;
+    height: 112px;
+  }
+  .swipe-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+  .swipe-wrap > div {
+    float:left;
+    width:100%;
+    position: relative;
   }
 </style>
