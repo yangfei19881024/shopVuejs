@@ -87,11 +87,13 @@
       return {
         slider:[
           {
-            ImageUrl:'//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg'
+            ImageUrl:''
           }
         ],
         config: {
-          autoplay: 1000
+          loop: true,
+          pagination: '.swiper-pagination',
+          autoplay: 1000,
         },
         TypeList: [],
         AdList: [],

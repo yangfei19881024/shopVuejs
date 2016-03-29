@@ -9,7 +9,6 @@
     </div>
     <div class="swiper-pagination"></div>
   </div>
-
 </template>
 
 <script>
@@ -21,7 +20,7 @@ export default {
     config: Object
   },
   ready () {
-    $.slider = $(this.$el).swiper({autoplay: 2000})
+      $(this.$el).swiper(this.config);
   },
   methods: {
     redirect (target) {
@@ -30,24 +29,8 @@ export default {
   }
 }
 </script>
-<style lang='sass' scoped>
-  $height: 150px;
+<style lang='sass'>
   .swiper-container{
-    height: $height;
-  }
-  .swiper-container{
-    padding: 0;
-  }
-  .swiper-pagination{
-    background: rgba(255,255,255,0.6);
-    border-radius: 5px;
-    width:35%;
-    left:50%;
-    transform:translateX(-50%);
-    bottom: 30px;
-  }
-  img{
-    width: 100%;
-    max-width: 100%;
+    padding-bottom: 0;
   }
 </style>
