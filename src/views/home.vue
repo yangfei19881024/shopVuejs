@@ -78,7 +78,7 @@
 
   export default {
     created(){
-      $.showPreloader();
+      $.showIndicator();
     },
     ready(){
       this.getApi();
@@ -122,23 +122,14 @@
           var data = response.data.ResponseData;
           this.$set('slider',data.BannerList);
           this.$set('MainData',data.MainData);
-          //
+
           let typelist = data.MainData[0].TypeList;
-          //
-          // typelist = typelist.map((item, index) => {
-          //   return {
-          //     ...typelist[index],
-          //     firstId: data.MainData[0].TabId
-          //   }
-          // });
 
           typelist = this.composedTypeList(data.MainData[0],typelist);
 
-          console.log('typelist');
-          console.log(typelist);
           this.$set('TypeList',typelist);
           this.$set('AdList',data.MainData[0].AdList);
-          $.hidePreloader();
+          $.hideIndicator();
         }, function (response) {
             // error callback
         });

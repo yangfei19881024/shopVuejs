@@ -159,7 +159,7 @@
         }
 
         if( action == 'newadd' ){
-            $.showPreloader();
+            $.showIndicator();
         }
 
         const api = new API();
@@ -189,15 +189,12 @@
           }else if( action == 'pushdata' ){
               this.goodList = [...this.goodList,...data];
 
-              // let element = $('.goodsList');
-              // let scrollTop = element[0].scrollHeight - element.height() - 20;
-              // element.scrollTop(scrollTop)
           }
-          $.hidePreloader();
+          $.hideIndicator();
 
           if( action == 'refresh' ){ //上拉刷新
             $.pullToRefreshDone('.pull-to-refresh-content')
-            $.hideIndicator()
+            $.hideIndicator();
           }
 
         }, function (response) {

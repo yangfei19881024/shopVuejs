@@ -1,10 +1,4 @@
 <template>
-  <div class="">
-    <div class="pull-to-refresh-layer">
-      <div class="preloader"></div>
-      <div class="pull-to-refresh-arrow"></div>
-    </div>
-
     <ul class="goodslist-container">
         <li v-for='item in goodList' data-index='{{$index}}'>
             <div class="good-image">
@@ -37,13 +31,12 @@
               </div>
             </div>
         </li>
-
       <!--加载指示器-->
       <div class="infinite-scroll-preloader">
           <div class="preloader"></div>
       </div>
     </ul>
-  </div>
+
 </template>
 
 <script>
@@ -59,15 +52,11 @@
   }
 </script>
 
-<style lang='sass'>
+<style lang='sass' scoped>
   @import '../styles/utils';
   @import '../styles/variables';
   @import '../styles/common';
   //
-  .content{
-    top: 2.4rem;
-  }
-
   /**商品列表**/
   .goodslist-container{
     overflow-x: hidden;
