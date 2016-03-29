@@ -91,8 +91,6 @@
           }
         ],
         config: {
-          loop: true,
-          pagination: '.swiper-pagination',
           autoplay: 1000,
         },
         TypeList: [],
