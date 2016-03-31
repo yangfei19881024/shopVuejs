@@ -97,6 +97,8 @@
   import VGoodsCard from '../components/GoodsCard';
 
   import Setting from "../config/setting";
+  import {decodeURI} from "../service/Utils";
+
   import API from "../api/api";
 
   import $ from "zepto";
@@ -126,7 +128,7 @@
         priceorder: 2,
         startIndex: 0,
         pageStep: 8,
-        loading: false,
+        isLoading: false,
         keyword: this.$route.query.keyword || '',
         //参数获取
         firstid: this.$route.params.firstid,
@@ -160,13 +162,13 @@
         this.$router.go({
           path: `/list/f/${this.firstid}/t/${this.thirdid}/o/${this.orderid}`,
           query:{
-            keyword: this.keyword
+            keyword: decodeURI(this.keyword)
           }
         });
       },
       fetchList(action='newadd'){
 
-        this.loading = true;
+        this.isLoading = true;
 
         let params = this.$route.params;
         let query = this.$route.query;
@@ -209,6 +211,12 @@
           console.log(response);
           this.isLoading = false;
           var data = response.data.ResponseData.GoodsData;
+          if( data == null ){
+            //加载完毕
+            // $.detachInfiniteScroll($('.infinite-scroll'));
+            $('.infinite-scroll-preloader').html('加载完毕');
+            return;
+          }
           if( action == 'newadd' || action == 'refresh' ){
               this.$set('goodList',data);
           }else if( action == 'pushdata' ){
@@ -228,7 +236,7 @@
       },
       loadMore(){
         console.log('开始加载了');
-
+        console.log(this.isLoading);
         if( this.isLoading ){ //正在加载中，停止
           return;
         }
