@@ -67,9 +67,6 @@
         font-size: px2rem(24);
         font-weight: bold;
       }
-      .oversea-logo{
-        width: 40%;
-      }
       .custom-feedback{
         @extend .good-price-container;
         padding: 0;
