@@ -89,7 +89,16 @@
           <p><a href="#" class="close-panel">关闭</a></p>
         </div>
       </div>
+
+
   </section>
+
+  <loading-bar
+    :progress=50
+    direction="left"
+    error="true">
+  </loading-bar>
+
 </div>
 </template>
 <script>
@@ -100,7 +109,7 @@
   import {decodeURI} from "../service/Utils";
 
   import API from "../api/api";
-
+  import loadingBar from "../components/vue-loading-bar.vue"
   import $ from "zepto";
 
   export default{
@@ -211,8 +220,8 @@
           console.log(response);
           this.isLoading = false;
           var data = response.data.ResponseData.GoodsData;
+          //加载完毕
           if( data == null ){
-            //加载完毕
             // $.detachInfiniteScroll($('.infinite-scroll'));
             $('.infinite-scroll-preloader').html('加载完毕');
             return;
@@ -251,7 +260,8 @@
     },
     components:{
       VGoodsList,
-      VGoodsCard
+      VGoodsCard,
+      loadingBar
     }
   }
 </script>
