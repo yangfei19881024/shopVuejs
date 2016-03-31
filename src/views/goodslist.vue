@@ -180,7 +180,7 @@
         if( params.orderid > 0){
           this.startIndex = 0;
           $('.goodsList').scrollTop(0);
-          $('.goodslist-container').trigger('scroll');
+          $('.goodslist-container').trigger('scroll'); //触发 滚动 ，以触发图片懒加载
         }
 
         if( action == 'newadd' ){
