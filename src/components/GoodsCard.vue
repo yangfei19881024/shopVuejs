@@ -14,17 +14,22 @@
         </p>
       </a>
     </li>
-    <!--加载指示器-->
-    <div class="infinite-scroll-preloader">
-        <div class="preloader"></div>
-    </div>
+    <v-loading-more
+      tips="加载更多了..."
+    >
+    </v-loading-more>
   </ul>
 </template>
 <script>
+  import VLoadingMore from './LoadingMore'
+
   export default{
     props: ['goodList'],
     ready(){
 
+    },
+    components:{
+      VLoadingMore
     }
   }
 </script>

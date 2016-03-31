@@ -31,16 +31,18 @@
               </div>
             </div>
         </li>
-      <!--加载指示器-->
-      <div class="infinite-scroll-preloader">
-          <div class="preloader"></div>
-      </div>
+
+        <v-loading-more
+          tips="加载更多..."
+        >
+        </v-loading-more>
     </ul>
 
 </template>
 
 <script>
   import $ from "zepto";
+  import VLoadingMore from './LoadingMore'
 
   export default{
     props:['goodList'],
@@ -48,6 +50,9 @@
       setTimeout(()=>{
         this.$dispatch('goodlistp','lalal');
       },2000);
+    },
+    components: {
+      VLoadingMore
     }
   }
 </script>

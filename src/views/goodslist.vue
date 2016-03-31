@@ -1,4 +1,6 @@
 <template>
+<div class="content">
+
   <header>
     <div class="header">
       <div class='navigator'>
@@ -10,7 +12,7 @@
       </div>
       <div class="operation">
         <i class='icon-cards' v-touch:tap='changeCard'></i>
-        <a href='javascript:;'>筛选</a>
+        <a href='javascript:;' class="open-panel" data-panel='#panel-left-demo'>筛选</a>
       </div>
     </div>
   </header>
@@ -67,6 +69,28 @@
       >
     </v-goods-card>
   </section>
+  <section> <!--侧边栏-->
+      <div class="panel-overlay"></div>
+      <!-- Left Panel with Reveal effect -->
+      <div class="panel panel-right panel-reveal theme-dark" id='panel-left-demo'>
+        <div class="content-block">
+          <p>这是一个侧栏</p>
+          <p>你可以在这里放用户设置页面</p>
+          <p><a href="#" class="close-panel">关闭</a></p>
+        </div>
+        <div class="list-block">
+          <!-- .... -->
+        </div>
+      </div>
+      <div class="panel panel-right panel-reveal">
+        <div class="content-block">
+          <p>这是一个侧栏</p>
+          <!-- Click on link with "close-panel" class will close panel -->
+          <p><a href="#" class="close-panel">关闭</a></p>
+        </div>
+      </div>
+  </section>
+</div>
 </template>
 <script>
   import VGoodsList from '../components/GoodsList';
@@ -156,6 +180,7 @@
         if( params.orderid > 0){
           this.startIndex = 0;
           $('.goodsList').scrollTop(0);
+          $('.goodslist-container').trigger('scroll');
         }
 
         if( action == 'newadd' ){
