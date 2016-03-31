@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li v-link="{ path:'/detail/'+item.GoodsId }">
       <div class="good-image">
         <img data-src="{{item.GoodsImg}}" class='lazy' alt="" />
       </div>

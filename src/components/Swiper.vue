@@ -54,7 +54,6 @@ export default {
     overflow: hidden;
     visibility: hidden;
     position: relative;
-    height: 112px;
   }
   .swipe-wrap {
     overflow: hidden;

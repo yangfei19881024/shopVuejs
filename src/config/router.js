@@ -10,6 +10,11 @@ export default function(router){
             require(['../views/goodslist'], resolve)
           }
       },
+      '/detail/:gid': {
+          component: function (resolve) {
+            require(['../views/gooddetail'], resolve)
+          }
+      },
       '/sui': {
         component: function (resolve) {
           require(['../views/sui'], resolve)

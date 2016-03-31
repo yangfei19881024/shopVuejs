@@ -1,7 +1,7 @@
 <template>
   <ul class="goodslist-container-card content">
     <li v-for='item in goodList'>
-      <a href="http://www.baidu.com">
+      <a v-link=" {path: '/detail/'+item.GoodsId} ">
         <img :src="item.GoodsImg" alt="" />
         <p class="good-title" v-text='item.GoodsTitle'></p>
         <p class='good-price-container'>
