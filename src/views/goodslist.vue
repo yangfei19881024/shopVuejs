@@ -97,7 +97,7 @@
   import VGoodsList from '../components/GoodsList';
   import VGoodsCard from '../components/GoodsCard';
 
-  import Setting from "../config/setting";
+  import {API_URI} from "../config/setting";
   import {decodeURI} from "../service/Utils";
 
   import API from "../api/api";
@@ -192,7 +192,7 @@
         const api = new API();
 
         api.http(this,{
-          url: Setting.API.shop_online,
+          url: API_URI.shop_online,
           method: 'POST',
           data:{
             'Act': 'GetShoppingMallGoodsList',

@@ -72,7 +72,7 @@
   import VCart from '../components/Cart';
   import VTemplate from '../components/Template';
 
-  import Setting from "../config/setting";
+  import {API_URI} from "../config/setting";
 
   import API from '../api/api';
 
@@ -112,7 +112,7 @@
       getApi(){
         const api = new API();
         api.http(this,{
-          url: Setting.API.shop_online,
+          url: API_URI.shop_online,
           method: 'POST',
           data:{
             'Act': 'GetShoppingMallHomeData'

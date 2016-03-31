@@ -31,3 +31,7 @@ $designWidth : 640; //如设计图是750
   -webkit-line-clamp: $num;
   -webkit-box-orient: vertical;
 }
+
+%bg_white{
+  background-color: #FFF;
+}
