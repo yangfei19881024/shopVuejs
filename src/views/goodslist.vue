@@ -90,15 +90,7 @@
         </div>
       </div>
 
-
   </section>
-
-  <loading-bar
-    :progress=50
-    direction="left"
-    error="true">
-  </loading-bar>
-
 </div>
 </template>
 <script>
@@ -109,7 +101,6 @@
   import {decodeURI} from "../service/Utils";
 
   import API from "../api/api";
-  import loadingBar from "../components/vue-loading-bar.vue"
   import $ from "zepto";
 
   export default{
