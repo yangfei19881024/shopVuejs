@@ -1,17 +1,19 @@
-import Home from "../views/home"
-import GoodsList from "../views/goodslist";
-import Sui from "../views/sui";
-
 export default function(router){
   router.map({
       '/home': {
-          component: Home
+          component: function (resolve) {
+            require(['../views/home'], resolve)
+          }
       },
       '/list/f/:firstid/t/:thirdid/o/:orderid': {
-          component: GoodsList
+          component: function (resolve) {
+            require(['../views/goodslist'], resolve)
+          }
       },
       '/sui': {
-        component: Sui
+        component: function (resolve) {
+          require(['../views/sui'], resolve)
+        }
       }
   })
 

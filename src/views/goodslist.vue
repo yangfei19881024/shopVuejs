@@ -252,7 +252,6 @@
     components:{
       VGoodsList,
       VGoodsCard,
-      loadingBar
     }
   }
 </script>
