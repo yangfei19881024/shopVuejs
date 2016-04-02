@@ -6,6 +6,7 @@ import VueResource from "vue-resource"
 import routerConfig from './config/router'
 import lazyLoad from "./directive/lazyLoad"
 import infiniteScroll from "./directive/infiniteScroll"
+import scrollFixed from "./directive/scrollFixed"
 import pullToRefresh from "./directive/pullToRefresh"
 import eventDelegator from "./directive/eventDelegator"
 
@@ -30,6 +31,7 @@ Vue.http.options.emulateJSON = true
 
 Vue.directive('lazyLoad', lazyLoad)
 Vue.directive('infiniteScroll', infiniteScroll)
+Vue.directive('scrollFixed', scrollFixed)
 Vue.directive('pullToRefresh', pullToRefresh)
 Vue.directive('eventDelegator', eventDelegator)
 

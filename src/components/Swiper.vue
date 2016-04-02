@@ -37,7 +37,7 @@ export default {
         callback: function(index, elem) {},
         transitionEnd: function(index, elem) {}
       });
-    },600)
+    },300)
 
   },
 

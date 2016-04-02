@@ -1,9 +1,9 @@
 import $ from 'zepto'
 
 export default {
-
+  params:['canscroll'],
   bind () {
-
+    
     let el = $(this.el),
         clientHeight = '',
         scrollHeight = '',
@@ -11,6 +11,10 @@ export default {
 
     $(el).on('scroll',()=>{
 
+      if( typeof this.params.canscroll !='undefined' && !this.params.canscroll ){
+        return;
+      }
+      console.log(this.params.canscroll);
       clientHeight = el.height();
       scrollHeight = el.scrollTop();
       documentHeight = el[0].scrollHeight;

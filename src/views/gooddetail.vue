@@ -1,4 +1,11 @@
 <template>
+<div class="content"
+  v-scroll-fixed="scrollFixed"
+  disablefixed="disableFixed"
+  :scrollheight="scrollheight"
+  v-infinite-scroll="loadMore"
+  :canscroll="gfc=='tab1'"
+>
   <div class="detail-headers">
     <swiper :imgs='slider' :config='config'></swiper>
   </div>
@@ -38,15 +45,54 @@
       {{goodDetail.GoodsDescription}}
     </p>
   </div>
-  <div class="good-comments">
+  <div class="good-footer-container">
 
+    <div class="buttons-tab">
+      <a href="#tab1" v-touch:tap="switchTab('tab1')" :class="{ 'active' : gfc === 'tab1' }" class="tab-link button">商品评价</a>
+      <a href="#tab2" v-touch:tap="switchTab('tab2')" :class="{ 'active' : gfc === 'tab2' }" class="tab-link button">商品详情</a>
+      <a href="#tab3" v-touch:tap="switchTab('tab3')" :class="{ 'active' : gfc === 'tab3' }" class="tab-link button">商品简介</a>
+    </div>
+
+    <div class="good-comments" v-if="gfc == 'tab1'">
+      <ul>
+        <li v-for="item in goodComments">
+          <p>
+            {{item.CommentContent}}
+          </p>
+          <p>
+            {{item.CommentTime}}
+          </p>
+        </li>
+      </ul>
+      <v-loading-more
+        tips="加载更多评论..."
+      ></v-loading-more>
+    </div>
+
+    <div class="good-detail" v-if="gfc == 'tab2'">
+      <p>
+        商品详情
+      </p>
+    </div>
+    <div class="good-detail" v-if="gfc == 'tab3'">
+      <p>
+        商品简介
+      </p>
+    </div>
   </div>
+</div>
+
+<div class="good-footer">
+  商品底部
+</div>
 </template>
 
 <script>
   import Swiper from "../components/Swiper";
   import { API_URI,swiperConfig } from "../config/setting";
   import {trimThumb} from "../service/Utils";
+
+  import VLoadingMore from "../components/LoadingMore";
 
   import API from "../api/api";
   import $ from "zepto";
@@ -56,12 +102,28 @@
       return {
         goodId: this.$route.params.gid,
         goodDetail: {},
+        goodComments: [],
         slider: [],
-        config: swiperConfig
+        config: swiperConfig,
+        gfc: 'tab1',
+        StartIndex: 0,
+        commentIsLoading: false,
+        scrollheight: ''
       }
     },
     ready(){
-      this.getGoodDetail(this.goodId);
+      $.init();
+
+      setTimeout(()=>{
+        this.scrollheight = $('.buttons-tab').offset().top
+      },310)
+
+    },
+    route:{
+      data(){
+        this.getGoodDetail(this.$route.params.gid);
+        this.getGoodComments(this.$route.params.gid);
+      }
     },
     methods:{
       getGoodDetail(id){
@@ -80,7 +142,44 @@
           $.hideIndicator();
         })
       },
+      getGoodComments(id,type='newadd'){
+        this.commentIsLoading = true;
+        const api = new API();
 
+        api.http(this,{
+          url: API_URI.shop_online,
+          method: 'POST',
+          data:{
+            'Act': 'GetShoppingMallGoodsCommentList',
+            'GoodsId': id,
+            'StartIndex': this.StartIndex,
+            'Number': 10
+          }
+        }).then( response => {
+          this.commentIsLoading = false;
+          if( type == 'push' ){
+            this.$set('goodComments',[...this.goodComments,...response.data.ResponseData]);
+          }else if( type == 'newadd' ){
+            this.$set('goodComments',response.data.ResponseData);
+          }
+        })
+      },
+      loadMore(){
+        if( this.commentIsLoading ){
+          return;
+        }
+        this.StartIndex += 10;
+        this.getGoodComments(this.goodId,'push');
+      },
+      scrollFixed(){
+        $('.buttons-tab').addClass('fixed');
+      },
+      disableFixed(){
+        $('.buttons-tab').removeClass('fixed');
+      },
+      switchTab(type){
+        this.gfc = type;
+      }
     },
     computed: {
       'slider':function(){
@@ -97,7 +196,8 @@
       }
     },
     components:{
-      Swiper
+      Swiper,
+      VLoadingMore
     }
   }
 </script>
@@ -189,5 +289,23 @@
       padding-left: px2rem(20);
       border-left: 1px solid #a8a8a8;
     }
+  }
+  .good-footer{
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    color: #FFF;
+    position: fixed;
+    width: 100%;
+    background: rgba(0,0,0,.6);
+    bottom: 0;
+  }
+  .good-footer-container{
+    padding-bottom: 90px;
+  }
+  .fixed{
+    position: fixed;
+    top: 0;
+    width: 100%;
   }
 </style>
