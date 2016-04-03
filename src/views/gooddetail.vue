@@ -116,7 +116,7 @@
 
       setTimeout(()=>{
         this.scrollheight = $('.buttons-tab').offset().top
-      },310)
+      },310);
 
     },
     route:{
@@ -138,6 +138,17 @@
           }
         }).then( response => {
           this.$set('goodDetail',response.data.ResponseData);
+
+          let images = this.goodDetail.GoodsImgList.split(','),
+              sliderImage = [];
+
+          this.slider = [];
+          images.map(item =>{
+            this.slider.push({
+              target: '',
+              ImageUrl: trimThumb(item)
+            })
+          });
 
           $.hideIndicator();
         })
@@ -181,20 +192,7 @@
         this.gfc = type;
       }
     },
-    computed: {
-      'slider':function(){
-          let images = this.goodDetail.GoodsImgList.split(','),
-              sliderImage = [];
 
-          images.map(item =>{
-            sliderImage.push({
-              target: '',
-              ImageUrl: trimThumb(item)
-            })
-          });
-          return sliderImage;
-      }
-    },
     components:{
       Swiper,
       VLoadingMore

@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import $ from 'zepto'
 import Swiper from "../assets/vendor/swiper.js"
 
 export default {
@@ -27,7 +26,7 @@ export default {
   ready () {
 
     setTimeout(()=>{
-      window.mySwipe = new Swiper(this.$el, {
+      new Swiper(this.$el, {
         startSlide: 0,
         speed: 400,
         auto: 1000,
